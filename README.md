@@ -9,3 +9,6 @@ Added Directory.Build.props with some defaults.
 Refactored default ASP.NET Core Web Api project to resemble a real life system.  
 Added logging using Serilog.  
 Added tests.  
+
+## v3
+Added another weather supplier (OpenWeather), selectable by parameter.  
