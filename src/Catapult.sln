@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33516.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{59224696-F9C2-4D11-8A44-069E4643D9BD}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{372D004F-0BE8-43AB-B15A-9300945BD745}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecastService.Api", "Services\WeatherForecastService.Api\WeatherForecastService.Api.csproj", "{895F297D-7873-4F56-9278-01689442745E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{895F297D-7873-4F56-9278-01689442745E}.Debug|x64.ActiveCfg = Debug|x64
+		{895F297D-7873-4F56-9278-01689442745E}.Debug|x64.Build.0 = Debug|x64
+		{895F297D-7873-4F56-9278-01689442745E}.Release|x64.ActiveCfg = Release|x64
+		{895F297D-7873-4F56-9278-01689442745E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{895F297D-7873-4F56-9278-01689442745E} = {372D004F-0BE8-43AB-B15A-9300945BD745}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B8E6B1C-7291-4CD7-B822-FBFCE74D4AE7}
+	EndGlobalSection
+EndGlobal
