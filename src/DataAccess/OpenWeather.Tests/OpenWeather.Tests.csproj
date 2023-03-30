@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
-    <ProjectReference Include="..\WeatherForecastService.Api\WeatherForecastService.Api.csproj" />
+    <ProjectReference Include="..\OpenWeather\OpenWeather.csproj" />
   </ItemGroup>
 
 </Project>
