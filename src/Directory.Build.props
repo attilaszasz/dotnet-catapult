@@ -1,12 +1,13 @@
 <Project>
     <PropertyGroup>
-	    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
-	    <Platforms>x64</Platforms>
-	    <PlatformTarget>x64</PlatformTarget>
+	      <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+	      <Platforms>x64</Platforms>
+	      <PlatformTarget>x64</PlatformTarget>
         <Configurations>Debug;Release</Configurations>
-	    <TargetFramework>net7.0</TargetFramework>
+	      <TargetFramework>net7.0</TargetFramework>
         <LangVersion>11</LangVersion>
         <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
         <DebugType>full</DebugType>

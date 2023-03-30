@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Types\Types.csproj" />
+    <ProjectReference Include="..\..\DataAccess\Dummy\Dummy.csproj" />
+  </ItemGroup>
+
+</Project>
