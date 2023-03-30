@@ -1,29 +1,34 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Interfaces;
+using Microsoft.Extensions.Configuration;
 using OpenWeatherMap.Standard;
 using OpenWeatherMap.Standard.Enums;
 using Types;
 
 namespace OpenWeather
 {
-    public class OpenWeatherSupplier
+    public class OpenWeatherSupplier : IWeatherSupplier
     {
         public static string Name => "OpenWeather";
 
-        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(double latitude, double longitude, int days)
+        private readonly string _apiToken;
+        private readonly Current _openWeather;
+
+        public OpenWeatherSupplier(IConfiguration configuration)
         {
-            //See https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows on how to set up local user secrets
-            var config = new ConfigurationBuilder().AddUserSecrets("7b91147d-502c-4fa9-b973-294be01c474b").Build();
+            _apiToken = configuration.GetSection("OpenWeatherAPIToken").Value ?? string.Empty;
 
-            string token = config.GetSection("OpenWeatherAPIToken").Value ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(_apiToken)) throw new NullReferenceException("Please set the OpenWeatherAPIToken user secret");
 
-            if (string.IsNullOrWhiteSpace(token)) throw new NullReferenceException("Please set the OpenWeatherAPIToken user secret");
+            _openWeather = new Current(_apiToken, WeatherUnits.Metric);
+        }
 
-            var supplier = new Current(token, WeatherUnits.Metric);
-            var results = await supplier.GetForecastDataByCoordinatesAsync(latitude, longitude);
+        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(WeatherForecastCriteria criteria)
+        {
+            var results = await _openWeather.GetForecastDataByCoordinatesAsync(criteria.Latitude, criteria.Longitude);
 
             return results
                 .WeatherData
-                .Where(w => w.AcquisitionDateTime > DateTime.Today.AddHours(23).AddMinutes(59) && w.AcquisitionDateTime < DateTime.Today.AddDays(days))
+                .Where(w => w.AcquisitionDateTime > DateTime.Today.AddHours(23).AddMinutes(59) && w.AcquisitionDateTime <= DateTime.Today.AddDays(criteria.Days))
                 .ToList()
                 .ConvertAll(w => new WeatherForecast
                 {

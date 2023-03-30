@@ -12,3 +12,7 @@ Added tests.
 
 ## v3
 Added another weather supplier (OpenWeather), selectable by parameter.  
+
+## v4
+Refactored to interface based programming model and dependency injection without using a DI container.  
+Able to test WeatherForecastService in isolation.  
