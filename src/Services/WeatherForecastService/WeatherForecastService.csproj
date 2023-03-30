@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
     <ProjectReference Include="..\..\DataAccess\Dummy\Dummy.csproj" />
+    <ProjectReference Include="..\..\DataAccess\OpenWeather\OpenWeather.csproj" />
   </ItemGroup>
 
 </Project>

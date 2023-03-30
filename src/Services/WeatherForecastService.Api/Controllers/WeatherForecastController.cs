@@ -14,11 +14,11 @@ namespace WeatherForecastService.Api.Controllers
 
         [HttpGet]
         [Route("/GetWeatherForecast")]
-        public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get(int days = 8)
+        public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get(double latitude = 46.542679, double longitude = 24.557859, int days = 8, string supplierName = "Dummy")
         {
             //Note: controller is tightly coupled to WeatherForecastService.
             var service = new WeatherForecastService();
-            var result = await service.GetWeatherForecast(days);
+            var result = await service.GetWeatherForecast(latitude, longitude, days, supplierName);
             return Ok(result);
         }
     }

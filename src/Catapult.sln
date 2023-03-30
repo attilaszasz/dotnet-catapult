@@ -14,19 +14,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastService.Api"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{B5A377D1-98D7-4743-AAFA-A102EEBCD4B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Types", "Core\Types\Types.csproj", "{73D200FF-1DFB-4077-90D3-AC75C19CFD2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Types", "Core\Types\Types.csproj", "{73D200FF-1DFB-4077-90D3-AC75C19CFD2E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{9914DB47-B143-4F63-A3D1-9764557C7CDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecastService", "Services\WeatherForecastService\WeatherForecastService.csproj", "{4C81E6F3-DC9B-463D-86C9-C4908F363693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastService", "Services\WeatherForecastService\WeatherForecastService.csproj", "{4C81E6F3-DC9B-463D-86C9-C4908F363693}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dummy", "DataAccess\Dummy\Dummy.csproj", "{6019512B-6FBF-48A7-93B5-A68DDF2E1D58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy.Tests", "DataAccess\Dummy.Tests\Dummy.Tests.csproj", "{0EE24CFC-CA3D-4B01-BBAF-28DA0D8668AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dummy.Tests", "DataAccess\Dummy.Tests\Dummy.Tests.csproj", "{0EE24CFC-CA3D-4B01-BBAF-28DA0D8668AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecastService.Tests", "Services\WeatherForecastService.Tests\WeatherForecastService.Tests.csproj", "{D80A20F5-7DCC-426D-A0A5-1E09EFE0EC50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastService.Tests", "Services\WeatherForecastService.Tests\WeatherForecastService.Tests.csproj", "{D80A20F5-7DCC-426D-A0A5-1E09EFE0EC50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherForecastService.Api.Tests", "Services\WeatherForecastService.Api.Tests\WeatherForecastService.Api.Tests.csproj", "{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastService.Api.Tests", "Services\WeatherForecastService.Api.Tests\WeatherForecastService.Api.Tests.csproj", "{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeather", "DataAccess\OpenWeather\OpenWeather.csproj", "{B47A3846-21B4-4310-A338-5C9D2FB2DCC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeather.Tests", "DataAccess\OpenWeather.Tests\OpenWeather.Tests.csproj", "{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +66,14 @@ Global
 		{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A}.Debug|x64.Build.0 = Debug|x64
 		{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A}.Release|x64.ActiveCfg = Release|x64
 		{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A}.Release|x64.Build.0 = Release|x64
+		{B47A3846-21B4-4310-A338-5C9D2FB2DCC5}.Debug|x64.ActiveCfg = Debug|x64
+		{B47A3846-21B4-4310-A338-5C9D2FB2DCC5}.Debug|x64.Build.0 = Debug|x64
+		{B47A3846-21B4-4310-A338-5C9D2FB2DCC5}.Release|x64.ActiveCfg = Release|x64
+		{B47A3846-21B4-4310-A338-5C9D2FB2DCC5}.Release|x64.Build.0 = Release|x64
+		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}.Debug|x64.ActiveCfg = Debug|x64
+		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}.Debug|x64.Build.0 = Debug|x64
+		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}.Release|x64.ActiveCfg = Release|x64
+		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +86,8 @@ Global
 		{0EE24CFC-CA3D-4B01-BBAF-28DA0D8668AA} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
 		{D80A20F5-7DCC-426D-A0A5-1E09EFE0EC50} = {372D004F-0BE8-43AB-B15A-9300945BD745}
 		{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A} = {372D004F-0BE8-43AB-B15A-9300945BD745}
+		{B47A3846-21B4-4310-A338-5C9D2FB2DCC5} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
+		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B8E6B1C-7291-4CD7-B822-FBFCE74D4AE7}
