@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
+    <ProjectReference Include="..\..\Core\Utilities\TestHelpers\TestHelpers.csproj" />
     <ProjectReference Include="..\Dummy\Dummy.csproj" />
   </ItemGroup>
 

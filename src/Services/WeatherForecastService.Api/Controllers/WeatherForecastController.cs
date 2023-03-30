@@ -1,5 +1,7 @@
-using Microsoft.AspNetCore.Http.HttpResults;
+using Dummy;
+using Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using OpenWeather;
 using Types;
 
 namespace WeatherForecastService.Api.Controllers
@@ -8,17 +10,22 @@ namespace WeatherForecastService.Api.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private readonly IWeatherForecastService _service;
+
         public WeatherForecastController()
         {
+            //Note: controller is tightly coupled to WeatherForecastService and suppliers
+            _service = new WeatherForecastService(
+                        dummy: new DummyWeatherSupplier(),
+                        openWeather: new OpenWeatherSupplier(new ConfigurationBuilder().AddUserSecrets("7b91147d-502c-4fa9-b973-294be01c474b").Build()));
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/GetWeatherForecast")]
-        public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get(double latitude = 46.542679, double longitude = 24.557859, int days = 8, string supplierName = "Dummy")
+        public async Task<ActionResult<IEnumerable<WeatherForecast>>> Get(WeatherForecastCriteria criteria, string supplierName = "Dummy")
         {
             //Note: controller is tightly coupled to WeatherForecastService.
-            var service = new WeatherForecastService();
-            var result = await service.GetWeatherForecast(latitude, longitude, days, supplierName);
+            var result = await _service.GetWeatherForecast(criteria, supplierName);
             return Ok(result);
         }
     }

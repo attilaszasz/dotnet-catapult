@@ -28,9 +28,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastService.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecastService.Api.Tests", "Services\WeatherForecastService.Api.Tests\WeatherForecastService.Api.Tests.csproj", "{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeather", "DataAccess\OpenWeather\OpenWeather.csproj", "{B47A3846-21B4-4310-A338-5C9D2FB2DCC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWeather", "DataAccess\OpenWeather\OpenWeather.csproj", "{B47A3846-21B4-4310-A338-5C9D2FB2DCC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeather.Tests", "DataAccess\OpenWeather.Tests\OpenWeather.Tests.csproj", "{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWeather.Tests", "DataAccess\OpenWeather.Tests\OpenWeather.Tests.csproj", "{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "Core\Interfaces\Interfaces.csproj", "{83531BD9-D52A-4667-A27B-B9C5771DBFDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{1A84EE7C-E4B3-4CDF-8C22-AE4EAECF5CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestHelpers", "Core\Utilities\TestHelpers\TestHelpers.csproj", "{263A2AE1-7BDF-4C29-A20B-5912ACD066A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +80,14 @@ Global
 		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}.Debug|x64.Build.0 = Debug|x64
 		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}.Release|x64.ActiveCfg = Release|x64
 		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB}.Release|x64.Build.0 = Release|x64
+		{83531BD9-D52A-4667-A27B-B9C5771DBFDE}.Debug|x64.ActiveCfg = Debug|x64
+		{83531BD9-D52A-4667-A27B-B9C5771DBFDE}.Debug|x64.Build.0 = Debug|x64
+		{83531BD9-D52A-4667-A27B-B9C5771DBFDE}.Release|x64.ActiveCfg = Release|x64
+		{83531BD9-D52A-4667-A27B-B9C5771DBFDE}.Release|x64.Build.0 = Release|x64
+		{263A2AE1-7BDF-4C29-A20B-5912ACD066A4}.Debug|x64.ActiveCfg = Debug|x64
+		{263A2AE1-7BDF-4C29-A20B-5912ACD066A4}.Debug|x64.Build.0 = Debug|x64
+		{263A2AE1-7BDF-4C29-A20B-5912ACD066A4}.Release|x64.ActiveCfg = Release|x64
+		{263A2AE1-7BDF-4C29-A20B-5912ACD066A4}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +102,9 @@ Global
 		{A9B1EAD3-5524-4DE0-B2E5-A2E89DE1FD4A} = {372D004F-0BE8-43AB-B15A-9300945BD745}
 		{B47A3846-21B4-4310-A338-5C9D2FB2DCC5} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
 		{4D20D92E-5A89-4C9B-8C43-500FB374A1CB} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
+		{83531BD9-D52A-4667-A27B-B9C5771DBFDE} = {B5A377D1-98D7-4743-AAFA-A102EEBCD4B7}
+		{1A84EE7C-E4B3-4CDF-8C22-AE4EAECF5CCE} = {B5A377D1-98D7-4743-AAFA-A102EEBCD4B7}
+		{263A2AE1-7BDF-4C29-A20B-5912ACD066A4} = {1A84EE7C-E4B3-4CDF-8C22-AE4EAECF5CCE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B8E6B1C-7291-4CD7-B822-FBFCE74D4AE7}

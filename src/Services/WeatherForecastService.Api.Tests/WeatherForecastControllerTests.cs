@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TestHelpers;
 using Types;
 using WeatherForecastService.Api.Controllers;
 
@@ -14,7 +15,7 @@ namespace WeatherForecastService.Api.Tests
             // For example, we'd like to test if logging is done correctly
             var controller = new WeatherForecastController();
 
-            var result = (await controller.Get(latitude: 46.542679, longitude: 24.557859, days: 1, supplierName: "Dummy")).Result as OkObjectResult;
+            var result = (await controller.Get(Parameters.TarguMures, supplierName: "Dummy")).Result as OkObjectResult;
             Assert.IsNotNull(result);
             var value = result.Value as IEnumerable<WeatherForecast>;
             Assert.IsNotNull(value);

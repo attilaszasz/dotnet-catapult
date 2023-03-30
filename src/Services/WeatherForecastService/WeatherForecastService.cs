@@ -1,23 +1,31 @@
 ﻿using Dummy;
+using Interfaces;
 using OpenWeather;
 using Types;
 
 namespace WeatherForecastService
 {
-    public class WeatherForecastService
+    public class WeatherForecastService : IWeatherForecastService
     {
-        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(double latitude, double longitude, int days, string supplierName)
+        private readonly IWeatherSupplier _dummy;
+        private readonly IWeatherSupplier _openWeather;
+
+        public WeatherForecastService(IWeatherSupplier dummy, IWeatherSupplier openWeather)
+        {
+            _dummy = dummy;
+            _openWeather = openWeather;
+        }
+
+        public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(WeatherForecastCriteria criteria, string supplierName)
         {
             //Note: service is tightly coupled to both dummy and openweather suppliers
             if (supplierName == DummyWeatherSupplier.Name)
             {
-                var supplier = new DummyWeatherSupplier();
-                return await supplier.GetWeatherForecast(days);
+                return await _dummy.GetWeatherForecast(criteria);
             }
             if (supplierName == OpenWeatherSupplier.Name)
             {
-                var supplier = new OpenWeatherSupplier();
-                return await supplier.GetWeatherForecast(latitude, longitude, days);
+                return await _openWeather.GetWeatherForecast(criteria);
             }
             throw new ArgumentException($"Unknown supplier: {supplierName}");
         }
