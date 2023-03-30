@@ -1,4 +1,4 @@
-namespace WeatherForecastService.Api
+﻿namespace Types
 {
     public class WeatherForecast
     {
