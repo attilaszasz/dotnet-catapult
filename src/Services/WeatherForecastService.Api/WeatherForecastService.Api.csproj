@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
-    <ProjectReference Include="..\..\Dummy\Dummy.csproj" />
     <ProjectReference Include="..\WeatherForecastService\WeatherForecastService.csproj" />
   </ItemGroup>
 

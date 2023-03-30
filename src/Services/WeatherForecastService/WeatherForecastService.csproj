@@ -2,7 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
-    <ProjectReference Include="..\..\Dummy\Dummy.csproj" />
+    <ProjectReference Include="..\..\DataAccess\Dummy\Dummy.csproj" />
   </ItemGroup>
 
 </Project>
