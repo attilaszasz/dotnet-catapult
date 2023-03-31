@@ -3,6 +3,7 @@ using Interfaces;
 using Helpers;
 using TestHelpers;
 using Types;
+using Moq;
 
 namespace Dummy.Tests
 {
@@ -16,6 +17,11 @@ namespace Dummy.Tests
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule<DummyModule>();
+
+            //NOTE: need to register the logger, because it is not registered in the DummyModule
+            var mockLogger = new Mock<ILogger>();
+            builder.Register(c => mockLogger.Object).As<ILogger>();
+
             _container = builder.Build();
         }
 
