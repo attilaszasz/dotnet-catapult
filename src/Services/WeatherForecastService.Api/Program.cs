@@ -1,3 +1,7 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
+using WeatherForecastService.Api;
+
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .Enrich.FromLogContext()
@@ -11,8 +15,11 @@ try
 
     builder.Host.UseSerilog();
 
-    // Add services to the container.
+    //Hook up Autofac container to the Asp.Net dependency injection
+    builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+    builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule<WeatherForecastServiceApiModule>());
 
+    // Add services to the container.
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();

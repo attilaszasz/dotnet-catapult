@@ -21,3 +21,6 @@ Able to test WeatherForecastService in isolation.
 Added OpenWeatherAdapter because the OpenWeatherApi library does not follow interface based programming model.  
 This way we can inject all dependencies into OpenWeatherSupplier.  
 We can test OpenWeatherSupplier in isolation.  
+
+## v5
+Added Autofac as DI container.

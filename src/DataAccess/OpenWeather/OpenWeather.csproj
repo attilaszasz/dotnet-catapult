@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
+    <ProjectReference Include="..\..\Core\Utilities\ConfigurationService\ConfigurationService.csproj" />
   </ItemGroup>
 
 </Project>
