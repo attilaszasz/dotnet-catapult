@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Interfaces;
+using Types;
 
 namespace Dummy
 {
@@ -8,9 +9,12 @@ namespace Dummy
         protected override void Load(ContainerBuilder builder)
         {
             base.Load(builder);
-            //NOTE: We have multiple implmentations of IWeatherSupplier, so we have to register them by name so we can resolve separately
+
+            //NOTE: registering the supplier with metadata attached
             builder.RegisterType<DummyWeatherSupplier>()
-                .Named<IWeatherSupplier>(DummyWeatherSupplier.Name);
+                .As<IWeatherSupplier>()
+                .WithMetadata<SupplierMetadata>(meta => meta.For(sm => sm.Name, DummyWeatherSupplier.Name))
+                .InstancePerLifetimeScope();
         }
     }
 }

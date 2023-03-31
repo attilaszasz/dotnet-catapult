@@ -14,10 +14,8 @@ namespace WeatherForecastService
             builder.RegisterModule<OpenWeatherModule>();
             builder.RegisterModule<DummyModule>();
 
-            builder.Register(c => new WeatherForecastService(
-                    c.ResolveNamed<IWeatherSupplier>(DummyWeatherSupplier.Name),
-                    c.ResolveNamed<IWeatherSupplier>(OpenWeatherSupplier.Name),
-                    c.Resolve<ILogger>()))
+            //NOTE: no more messing around with parameters, just explicitely register
+            builder.RegisterType<WeatherForecastService>()
                 .As<IWeatherForecastService>();
         }
     }

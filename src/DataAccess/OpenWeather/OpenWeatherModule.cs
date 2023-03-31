@@ -3,6 +3,7 @@ using Interfaces;
 using OpenWeatherMap.Standard.Enums;
 using OpenWeatherMap.Standard;
 using ConfigurationService;
+using Types;
 
 namespace OpenWeather
 {
@@ -26,9 +27,11 @@ namespace OpenWeather
             builder.RegisterType<OpenWeatherAdapter>()
                 .As<IOpenWeatherAdapter>();
 
-            //NOTE: We have multiple implmentations of IOpenWeatherAPIAdapter, so we have to register them by name so we can resolve separately
+            //NOTE: registering the supplier with metadata attached
             builder.RegisterType<OpenWeatherSupplier>()
-                .Named<IWeatherSupplier>(OpenWeatherSupplier.Name);
+                .As<IWeatherSupplier>()
+                .WithMetadata<SupplierMetadata>(meta => meta.For(sm => sm.Name, OpenWeatherSupplier.Name))
+                .InstancePerLifetimeScope();
         }
     }
 }

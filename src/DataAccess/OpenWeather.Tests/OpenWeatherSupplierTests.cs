@@ -1,10 +1,11 @@
 using Autofac;
 using Dummy;
 using Interfaces;
-using Microsoft.Extensions.Configuration;
 using Moq;
 using OpenWeatherMap.Standard.Models;
+using Helpers;
 using TestHelpers;
+using Types;
 
 namespace OpenWeather.Tests
 {
@@ -45,8 +46,9 @@ namespace OpenWeather.Tests
             builder.RegisterModule<OpenWeatherModule>();
             var container = builder.Build();
 
-            var access = container!.ResolveNamed<IWeatherSupplier>(OpenWeatherSupplier.Name);
-            var result = await access.GetWeatherForecast(Parameters.TarguMures);
+            var suppliers = container!.Resolve<IEnumerable<Lazy<IWeatherSupplier, SupplierMetadata>>>();
+            var supplier = suppliers.GetSupplier(OpenWeatherSupplier.Name);
+            var result = await supplier.GetWeatherForecast(Parameters.TarguMures);
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count());
         }
@@ -54,7 +56,8 @@ namespace OpenWeather.Tests
         [TestMethod]
         public async Task TestOpenWeatherSupplierInIsolation()
         {
-            var supplier = _container!.ResolveNamed<IWeatherSupplier>(OpenWeatherSupplier.Name);
+            var suppliers = _container!.Resolve<IEnumerable<Lazy<IWeatherSupplier, SupplierMetadata>>>();
+            var supplier = suppliers.GetSupplier(OpenWeatherSupplier.Name);
 
             await supplier.GetWeatherForecast(Parameters.TarguMures);
 
