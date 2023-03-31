@@ -1,3 +1,4 @@
+using Autofac;
 using Dummy;
 using Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -14,12 +15,17 @@ namespace WeatherForecastService.Tests
         [TestMethod]
         public async Task TestSingleResult()
         {
-            //Note: this will test with the hardcoded DummyWeatherSupplier
-            var service = new WeatherForecastService(
-                dummy: new DummyWeatherSupplier(), 
-                openWeather: new OpenWeatherSupplier(new OpenWeatherAdapter(new ConfigurationBuilder().AddUserSecrets("7b91147d-502c-4fa9-b973-294be01c474b").Build()))
-            );
-            var results = await service.GetWeatherForecast(Parameters.TarguMures, supplierName: "Dummy");
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<WeatherForecastServiceModule>();
+            //NOTE: need to register the logger, because it is not registered in the WeatherServiceModule
+            var mockLogger = new Mock<ILogger>();
+            builder.Register(c => mockLogger.Object).As<ILogger>();
+
+            var _container = builder.Build();
+
+            var service = _container!.Resolve<IWeatherForecastService>();
+
+            var results = await service.GetWeatherForecast(Parameters.TarguMures, DummyWeatherSupplier.Name);
             Assert.IsNotNull(results);
             Assert.AreEqual(1, results.Count());
         }
@@ -38,7 +44,20 @@ namespace WeatherForecastService.Tests
                     Summary = string.Empty
                 })));
 
-            var service = new WeatherForecastService(mockDummySupplier.Object, mockOpenWeatherSupplier.Object);
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<WeatherForecastServiceModule>();
+
+            //NOTE: overwriting default registrations with our mocks
+            builder.Register(c => mockDummySupplier.Object).Named<IWeatherSupplier>(DummyWeatherSupplier.Name);
+            builder.Register(c => mockOpenWeatherSupplier.Object).Named<IWeatherSupplier>(OpenWeatherSupplier.Name);
+
+            //NOTE: need to register the logger, because it is not registered in the WeatherServiceModule
+            var mockLogger = new Mock<ILogger>();
+            builder.Register(c => mockLogger.Object).As<ILogger>();
+
+            var _container = builder.Build();
+
+            var service = _container.Resolve<IWeatherForecastService>();
             var results = await service.GetWeatherForecast(Parameters.TarguMures, DummyWeatherSupplier.Name);
 
             Assert.IsNotNull(results);

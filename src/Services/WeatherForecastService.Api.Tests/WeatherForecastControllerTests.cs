@@ -1,21 +1,38 @@
+using Autofac.Core;
+using Autofac;
 using Microsoft.AspNetCore.Mvc;
 using TestHelpers;
 using Types;
 using WeatherForecastService.Api.Controllers;
+using Moq;
 
 namespace WeatherForecastService.Api.Tests
 {
     [TestClass]
     public class WeatherForecastControllerTests
     {
+        private IContainer? _container;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<WeatherForecastServiceApiModule>();
+
+            //NOTE: While testing we don't want to actually write logs
+            builder.Register(c => new Mock<ILogger>().Object)
+                .As<ILogger>();
+
+            _container = builder.Build();
+        }
+
         [TestMethod]
         public async Task TestSingleResult()
         {
-            //NOTE: we cannot test WeatherForecastService in isolation because the weather suppliers are tightly coupled to it
-            // For example, we'd like to test if logging is done correctly
-            var controller = new WeatherForecastController();
+            var controller = _container!.Resolve<WeatherForecastController>();
 
-            var result = (await controller.Get(Parameters.TarguMures, supplierName: "Dummy")).Result as OkObjectResult;
+            var result = (await controller.Post(Parameters.TarguMures, supplierName: "Dummy")).Result as OkObjectResult;
+
             Assert.IsNotNull(result);
             var value = result.Value as IEnumerable<WeatherForecast>;
             Assert.IsNotNull(value);
