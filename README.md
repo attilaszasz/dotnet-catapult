@@ -24,3 +24,6 @@ We can test OpenWeatherSupplier in isolation.
 
 ## v5
 Added Autofac as DI container.
+
+## v6
+Implemented strategy pattern for selecting weather supplier.

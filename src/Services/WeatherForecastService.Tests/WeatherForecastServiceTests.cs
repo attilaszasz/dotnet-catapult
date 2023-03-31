@@ -48,8 +48,8 @@ namespace WeatherForecastService.Tests
             builder.RegisterModule<WeatherForecastServiceModule>();
 
             //NOTE: overwriting default registrations with our mocks
-            builder.Register(c => mockDummySupplier.Object).Named<IWeatherSupplier>(DummyWeatherSupplier.Name);
-            builder.Register(c => mockOpenWeatherSupplier.Object).Named<IWeatherSupplier>(OpenWeatherSupplier.Name);
+            builder.Register(c => mockDummySupplier.Object).As<IWeatherSupplier>().WithMetadata<SupplierMetadata>(m => m.For(sm => sm.Name, DummyWeatherSupplier.Name));
+            builder.Register(c => mockOpenWeatherSupplier.Object).As<IWeatherSupplier>().WithMetadata<SupplierMetadata>(m => m.For(sm => sm.Name, OpenWeatherSupplier.Name));
 
             //NOTE: need to register the logger, because it is not registered in the WeatherServiceModule
             var mockLogger = new Mock<ILogger>();

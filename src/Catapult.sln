@@ -38,7 +38,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHelpers", "Core\Utilities\TestHelpers\TestHelpers.csproj", "{263A2AE1-7BDF-4C29-A20B-5912ACD066A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationService", "Core\Utilities\ConfigurationService\ConfigurationService.csproj", "{0116C8E3-EA1E-498D-B042-8A4221FED534}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationService", "Core\Utilities\ConfigurationService\ConfigurationService.csproj", "{0116C8E3-EA1E-498D-B042-8A4221FED534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Core\Utilities\Helpers\Helpers.csproj", "{5E5C231E-9377-4C9B-AC05-97A77A184468}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -94,6 +96,10 @@ Global
 		{0116C8E3-EA1E-498D-B042-8A4221FED534}.Debug|x64.Build.0 = Debug|x64
 		{0116C8E3-EA1E-498D-B042-8A4221FED534}.Release|x64.ActiveCfg = Release|x64
 		{0116C8E3-EA1E-498D-B042-8A4221FED534}.Release|x64.Build.0 = Release|x64
+		{5E5C231E-9377-4C9B-AC05-97A77A184468}.Debug|x64.ActiveCfg = Debug|x64
+		{5E5C231E-9377-4C9B-AC05-97A77A184468}.Debug|x64.Build.0 = Debug|x64
+		{5E5C231E-9377-4C9B-AC05-97A77A184468}.Release|x64.ActiveCfg = Release|x64
+		{5E5C231E-9377-4C9B-AC05-97A77A184468}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,6 +118,7 @@ Global
 		{1A84EE7C-E4B3-4CDF-8C22-AE4EAECF5CCE} = {B5A377D1-98D7-4743-AAFA-A102EEBCD4B7}
 		{263A2AE1-7BDF-4C29-A20B-5912ACD066A4} = {1A84EE7C-E4B3-4CDF-8C22-AE4EAECF5CCE}
 		{0116C8E3-EA1E-498D-B042-8A4221FED534} = {1A84EE7C-E4B3-4CDF-8C22-AE4EAECF5CCE}
+		{5E5C231E-9377-4C9B-AC05-97A77A184468} = {1A84EE7C-E4B3-4CDF-8C22-AE4EAECF5CCE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B8E6B1C-7291-4CD7-B822-FBFCE74D4AE7}

@@ -1,6 +1,8 @@
 using Autofac;
 using Interfaces;
+using Helpers;
 using TestHelpers;
+using Types;
 
 namespace Dummy.Tests
 {
@@ -20,8 +22,9 @@ namespace Dummy.Tests
         [TestMethod]
         public async Task TestSingleResult()
         {
-            var access = _container!.ResolveNamed<IWeatherSupplier>(DummyWeatherSupplier.Name);
-            var result = await access.GetWeatherForecast(Parameters.TarguMures);
+            var suppliers = _container!.Resolve<IEnumerable<Lazy<IWeatherSupplier, SupplierMetadata>>>();
+            var supplier = suppliers.GetSupplier(DummyWeatherSupplier.Name);
+            var result = await supplier.GetWeatherForecast(Parameters.TarguMures);
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count());
         }

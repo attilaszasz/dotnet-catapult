@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\Interfaces\Interfaces.csproj" />
+    <ProjectReference Include="..\..\Types\Types.csproj" />
+  </ItemGroup>
+</Project>
