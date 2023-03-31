@@ -10,24 +10,20 @@ namespace OpenWeather
     {
         public static string Name => "OpenWeather";
 
-        private readonly string _apiToken;
-        private readonly Current _openWeather;
+        //NOTE: because the OpenWeatherMap library does not follow intarface based programming model,
+        private readonly IOpenWeatherAdapter _api;
 
-        public OpenWeatherSupplier(IConfiguration configuration)
+        public OpenWeatherSupplier(IOpenWeatherAdapter api)
         {
-            _apiToken = configuration.GetSection("OpenWeatherAPIToken").Value ?? string.Empty;
-
-            if (string.IsNullOrWhiteSpace(_apiToken)) throw new NullReferenceException("Please set the OpenWeatherAPIToken user secret");
-
-            _openWeather = new Current(_apiToken, WeatherUnits.Metric);
+            _api = api;
         }
 
         public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(WeatherForecastCriteria criteria)
         {
-            var results = await _openWeather.GetForecastDataByCoordinatesAsync(criteria.Latitude, criteria.Longitude);
+            var results = await _api.GetForecastDataByCoordinatesAsync(criteria.Latitude, criteria.Longitude);
 
             return results
-                .WeatherData
+                .WeatherData?
                 .Where(w => w.AcquisitionDateTime > DateTime.Today.AddHours(23).AddMinutes(59) && w.AcquisitionDateTime <= DateTime.Today.AddDays(criteria.Days))
                 .ToList()
                 .ConvertAll(w => new WeatherForecast
@@ -35,7 +31,9 @@ namespace OpenWeather
                     Date = w.AcquisitionDateTime,
                     TemperatureC = (int)w.WeatherDayInfo.Temperature,
                     Summary = w.Weathers?.FirstOrDefault()?.Description ?? string.Empty
-                });
+                }) 
+                ?? Enumerable.Empty<WeatherForecast>();
         }
+
     }
 }

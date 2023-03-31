@@ -16,3 +16,8 @@ Added another weather supplier (OpenWeather), selectable by parameter.
 ## v4
 Refactored to interface based programming model and dependency injection without using a DI container.  
 Able to test WeatherForecastService in isolation.  
+
+### v4.1
+Added OpenWeatherAdapter because the OpenWeatherApi library does not follow interface based programming model.  
+This way we can inject all dependencies into OpenWeatherSupplier.  
+We can test OpenWeatherSupplier in isolation.  

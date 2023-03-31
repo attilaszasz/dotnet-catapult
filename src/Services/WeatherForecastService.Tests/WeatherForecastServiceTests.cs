@@ -17,7 +17,7 @@ namespace WeatherForecastService.Tests
             //Note: this will test with the hardcoded DummyWeatherSupplier
             var service = new WeatherForecastService(
                 dummy: new DummyWeatherSupplier(), 
-                openWeather: new OpenWeatherSupplier(new ConfigurationBuilder().AddUserSecrets("7b91147d-502c-4fa9-b973-294be01c474b").Build())
+                openWeather: new OpenWeatherSupplier(new OpenWeatherAdapter(new ConfigurationBuilder().AddUserSecrets("7b91147d-502c-4fa9-b973-294be01c474b").Build()))
             );
             var results = await service.GetWeatherForecast(Parameters.TarguMures, supplierName: "Dummy");
             Assert.IsNotNull(results);
