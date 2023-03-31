@@ -27,3 +27,6 @@ Added Autofac as DI container.
 
 ## v6
 Implemented strategy pattern for selecting weather supplier.
+
+## v7
+Added multi-level caching to showcase decorator pattern using dependency injection

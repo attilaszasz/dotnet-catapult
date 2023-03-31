@@ -14,6 +14,7 @@ namespace Dummy
 
         public async Task<IEnumerable<WeatherForecast>> GetWeatherForecast(WeatherForecastCriteria criteria)
         {
+            Thread.Sleep(5000);
             return await Task.FromResult(Enumerable.Range(1, criteria.Days).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
