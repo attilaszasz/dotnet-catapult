@@ -1,6 +1,6 @@
-using Autofac.Extensions.DependencyInjection;
 using Autofac;
-using WeatherForecastService.Api;
+using Autofac.Extensions.DependencyInjection;
+using Dummy.Api;
 using Man.Dapr.Sidekick;
 
 Log.Logger = new LoggerConfiguration()
@@ -10,21 +10,19 @@ Log.Logger = new LoggerConfiguration()
 
 try
 {
-    Log.Information("Starting WeatherForecast Service");
+    Log.Information("Starting Dummy API");
 
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog();
 
-    //Hook up Autofac container to the Asp.Net dependency injection
     builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
-    builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule<WeatherForecastServiceApiModule>());
+    builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule<DummyApiModule>());
 
-    // Add services to the container.
     builder.Services.AddControllers();
 
     //NOTE: Using Dapr Sidekick to manage Dapr sidecar
-    builder.Services.AddDaprSidekick(p => p.Sidecar = new DaprSidecarOptions { AppId = "WeatherService" });
+    builder.Services.AddDaprSidekick(p => p.Sidecar = new DaprSidecarOptions { AppId = "Dummy" });
 
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
@@ -39,8 +37,6 @@ try
         app.UseSwaggerUI();
     }
 
-    app.UseHttpsRedirection();
-
     app.UseAuthorization();
 
     app.MapControllers();
@@ -48,10 +44,11 @@ try
     app.UseSerilogRequestLogging();
 
     app.Run();
+
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "WeatherForecast Service terminated unexpectedly");
+    Log.Fatal(ex, "Dummy API terminated unexpectedly");
 }
 finally
 {

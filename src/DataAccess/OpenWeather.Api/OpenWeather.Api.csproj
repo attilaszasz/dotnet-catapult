@@ -1,7 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <UserSecretsId>7b91147d-502c-4fa9-b973-294be01c474b</UserSecretsId>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,8 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
-    <ProjectReference Include="..\WeatherForecastService\WeatherForecastService.csproj" />
+    <ProjectReference Include="..\OpenWeather\OpenWeather.csproj" />
   </ItemGroup>
 
 </Project>
