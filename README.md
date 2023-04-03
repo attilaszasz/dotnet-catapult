@@ -30,3 +30,6 @@ Implemented strategy pattern for selecting weather supplier.
 
 ## v7
 Added multi-level caching to showcase decorator pattern using dependency injection
+
+## v8
+Instead of a modular monolith, the system is now decomposed into microservices, comunicating through Dapr

@@ -4,8 +4,8 @@
     <ProjectReference Include="..\..\Core\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
     <ProjectReference Include="..\..\Core\Utilities\Helpers\Helpers.csproj" />
-    <ProjectReference Include="..\..\DataAccess\Dummy\Dummy.csproj" />
-    <ProjectReference Include="..\..\DataAccess\OpenWeather\OpenWeather.csproj" />
+    <ProjectReference Include="..\..\DataAccess\Dummy.Proxy\Dummy.Proxy.csproj" />
+    <ProjectReference Include="..\..\DataAccess\OpenWeather.Proxy\OpenWeather.Proxy.csproj" />
   </ItemGroup>
 
 </Project>

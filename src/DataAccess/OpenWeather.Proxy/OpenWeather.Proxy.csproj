@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Interfaces\Interfaces.csproj" />
+    <ProjectReference Include="..\..\Core\Types\Types.csproj" />
+    <ProjectReference Include="..\OpenWeather\OpenWeather.csproj" />
+  </ItemGroup>
+
+</Project>
