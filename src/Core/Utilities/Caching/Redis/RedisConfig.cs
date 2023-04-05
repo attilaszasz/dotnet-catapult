@@ -7,6 +7,7 @@ namespace Redis
         public List<string> Endpoints { get; }
         public string Password { get; set; }
         public int ConnectTimeout { get; set; }
+        public bool UseSSL { get; set; }
 
         public RedisConfig(IConfigurationService configurationService)
         {
@@ -16,6 +17,7 @@ namespace Redis
             Password = dto.PrimaryKey;
             ConnectTimeout = dto.ConnectionTimeout;
             Endpoints = dto.EndPointsCSV.Split(',').ToList();
+            UseSSL = dto.UseSSL;
         }
 
         public class RedisConfigDto
@@ -23,6 +25,7 @@ namespace Redis
             public string EndPointsCSV { get; set; } = string.Empty;
             public string PrimaryKey { get; set; } = string.Empty;
             public int ConnectionTimeout { get; set; }
+            public bool UseSSL { get; set; }
         }
     }
 }

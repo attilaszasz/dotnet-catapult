@@ -50,13 +50,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Redis", "Core\Utilities\Cac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caching", "DataAccess\Caching\Caching.csproj", "{24D44FE0-00DC-4695-BBC1-9718A3B3641A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy.Api", "DataAccess\Dummy.Api\Dummy.Api.csproj", "{B919B620-C910-4A03-BF41-96D0C7DA61F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dummy.Api", "DataAccess\Dummy.Api\Dummy.Api.csproj", "{B919B620-C910-4A03-BF41-96D0C7DA61F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeather.Api", "DataAccess\OpenWeather.Api\OpenWeather.Api.csproj", "{5E05217A-37BD-4EC1-B916-B8B76ACE8733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWeather.Api", "DataAccess\OpenWeather.Api\OpenWeather.Api.csproj", "{5E05217A-37BD-4EC1-B916-B8B76ACE8733}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy.Proxy", "DataAccess\Dummy.Proxy\Dummy.Proxy.csproj", "{B459FC5D-AB13-4E84-BF02-FC9C5564F896}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dummy.Proxy", "DataAccess\Dummy.Proxy\Dummy.Proxy.csproj", "{B459FC5D-AB13-4E84-BF02-FC9C5564F896}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenWeather.Proxy", "DataAccess\OpenWeather.Proxy\OpenWeather.Proxy.csproj", "{D3384845-1493-4F61-9479-18420D28749B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenWeather.Proxy", "DataAccess\OpenWeather.Proxy\OpenWeather.Proxy.csproj", "{D3384845-1493-4F61-9479-18420D28749B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DaprStateStore", "Core\Utilities\Caching\DaprStateStore\DaprStateStore.csproj", "{16A6C238-809A-4EA1-A527-9DDBCAF687FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -144,6 +146,10 @@ Global
 		{D3384845-1493-4F61-9479-18420D28749B}.Debug|x64.Build.0 = Debug|x64
 		{D3384845-1493-4F61-9479-18420D28749B}.Release|x64.ActiveCfg = Release|x64
 		{D3384845-1493-4F61-9479-18420D28749B}.Release|x64.Build.0 = Release|x64
+		{16A6C238-809A-4EA1-A527-9DDBCAF687FF}.Debug|x64.ActiveCfg = Debug|x64
+		{16A6C238-809A-4EA1-A527-9DDBCAF687FF}.Debug|x64.Build.0 = Debug|x64
+		{16A6C238-809A-4EA1-A527-9DDBCAF687FF}.Release|x64.ActiveCfg = Release|x64
+		{16A6C238-809A-4EA1-A527-9DDBCAF687FF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -171,6 +177,7 @@ Global
 		{5E05217A-37BD-4EC1-B916-B8B76ACE8733} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
 		{B459FC5D-AB13-4E84-BF02-FC9C5564F896} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
 		{D3384845-1493-4F61-9479-18420D28749B} = {9914DB47-B143-4F63-A3D1-9764557C7CDC}
+		{16A6C238-809A-4EA1-A527-9DDBCAF687FF} = {1CDCAB2D-49CF-4B69-BD6A-D5E1C9921607}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B8E6B1C-7291-4CD7-B822-FBFCE74D4AE7}

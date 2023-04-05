@@ -2,6 +2,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\..\Core\Types\Types.csproj" />
+    <ProjectReference Include="..\..\Core\Utilities\Caching\DaprStateStore\DaprStateStore.csproj" />
     <ProjectReference Include="..\..\Core\Utilities\Caching\Memory\Memory.csproj" />
     <ProjectReference Include="..\..\Core\Utilities\Caching\Redis\Redis.csproj" />
     <ProjectReference Include="..\..\Core\Utilities\ConfigurationService\ConfigurationService.csproj" />

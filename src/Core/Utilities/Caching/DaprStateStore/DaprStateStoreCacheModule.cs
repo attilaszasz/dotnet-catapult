@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using Dapr.Client;
 using Interfaces;
-using Types;
+using Types.Caching;
 
-namespace Dummy.Proxy
+namespace DaprStateStore
 {
-    public class DummyProxyModule : Module
+    public class DaprStateStoreCacheModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -15,10 +15,10 @@ namespace Dummy.Proxy
                 .As<DaprClient>()
                 .SingleInstance();
 
-            builder.RegisterType<DummyWeatherSupplierProxy>()
-                .As<IWeatherSupplier>()
-                .WithMetadata<SupplierMetadata>(m => m.For(sm => sm.Name, Constants.Suppliers.Dummy))
-                .InstancePerLifetimeScope();
+            builder.RegisterType<DaprStateStoreCache>()
+                .As<ICache>()
+                .Keyed<ICache>(CacheType.Shared)
+                .SingleInstance();
         }
     }
 }

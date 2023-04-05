@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Caching;
 using ConfigurationService;
+using DaprStateStore;
 using Interfaces;
 using Memory;
 using Redis;
@@ -17,7 +18,7 @@ namespace Dummy
 
             builder.RegisterModule<ConfigurationServiceModule>();
             builder.RegisterModule<MemoryCacheModule>();
-            builder.RegisterModule<RedisCacheModule>();
+            builder.RegisterModule<DaprStateStoreCacheModule>();
 
             builder.RegisterType<WeatherSupplierCache>();
             builder.RegisterType<DummyWeatherSupplier>();

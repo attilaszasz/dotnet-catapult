@@ -20,7 +20,7 @@ namespace Redis
                 var options = c.Resolve<RedisConfig>();
                 var redisOptions = new ConfigurationOptions()
                 {
-                    Ssl = true,
+                    Ssl = options.UseSSL,
                     Password = options.Password,
                     AllowAdmin = true,
                     ConnectTimeout = options.ConnectTimeout

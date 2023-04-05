@@ -17,7 +17,7 @@ namespace OpenWeather.Proxy
 
             builder.RegisterType<OpenWeatherSupplierProxy>()
                 .As<IWeatherSupplier>()
-                .WithMetadata<SupplierMetadata>(m => m.For(sm => sm.Name, "OpenWeather"))
+                .WithMetadata<SupplierMetadata>(m => m.For(sm => sm.Name, Constants.Suppliers.OpenWeather))
                 .InstancePerLifetimeScope();
         }
     }
