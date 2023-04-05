@@ -3,4 +3,17 @@
 ## Prerequisites
 
 - Visual Studio 2022, .net 7 SDK
-- [Dapr](guides/install-dapr.md) installed on local environment
+- [Dapr minimal](guides/install-dapr.md) installed on local environment
+
+## Set up local development environment
+
+Set environment variable `CATAPULT_DAPR_FOLDER` to point to the `<ProjectFolder>\infrastructure\local\dapr\components` folder.
+
+
+Example using powershell (*run as administrator*):
+
+```powershell
+[Environment]::SetEnvironmentVariable('CATAPULT_DAPR_FOLDER', "C:\Work\Projects\dotnet-catapult\infrastructure\local\dapr\components", "Machine")
+```
+
+Restart Visual Studio if it was running.
