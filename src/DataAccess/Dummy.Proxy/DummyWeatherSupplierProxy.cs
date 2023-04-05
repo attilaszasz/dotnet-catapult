@@ -19,7 +19,7 @@ namespace Dummy.Proxy
         {
             try
             {
-                return await _client.InvokeMethodAsync<WeatherForecastCriteria, IEnumerable<WeatherForecast>>(HttpMethod.Post, "Dummy", "GetWeatherForecast", criteria);
+                return await _client.InvokeMethodAsync<WeatherForecastCriteria, IEnumerable<WeatherForecast>>(HttpMethod.Post, Constants.Suppliers.Dummy, "GetWeatherForecast", criteria);
             }
             catch (InvocationException ex)
             {

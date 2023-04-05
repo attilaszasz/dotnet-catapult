@@ -25,7 +25,7 @@ namespace Caching
         {
             var keys = string.Format(CacheKeys.GetWeatherForecast, criteria.Longitude, criteria.Latitude, criteria.Days);
 
-            var result = _cache.Get<IEnumerable<WeatherForecast>>(keys);
+            var result = await _cache.Get<IEnumerable<WeatherForecast>>(keys);
 
             if (result != null)
             {
@@ -38,7 +38,7 @@ namespace Caching
             result = await _supplier.GetWeatherForecast(criteria);
 
             _logger.Information("Setting {key} in {cache} for {duration}s.", keys, _cache.GetType().ToString(), _cacheSettings.Duration.Short);
-            if (result != null) _cache.Set(keys, result, TimeSpan.FromSeconds(_cacheSettings.Duration.Short));  //Caching weather data for 10 mins
+            if (result != null) await _cache.Set(keys, result, TimeSpan.FromSeconds(_cacheSettings.Duration.Short));  //Caching weather data for 10 mins
 
             return result ?? Enumerable.Empty<WeatherForecast>();
 

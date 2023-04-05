@@ -5,7 +5,7 @@ namespace Dummy
 {
     public class DummyWeatherSupplier : IWeatherSupplier
     {
-        public static string Name => "Dummy";
+        public static string Name => Constants.Suppliers.Dummy;
 
         private static readonly string[] Summaries = new[]
         {

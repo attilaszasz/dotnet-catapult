@@ -8,7 +8,7 @@ namespace OpenWeather
 {
     public class OpenWeatherSupplier : IWeatherSupplier
     {
-        public static string Name => "OpenWeather";
+        public static string Name => Constants.Suppliers.OpenWeather;
 
         //NOTE: because the OpenWeatherMap library does not follow intarface based programming model,
         private readonly IOpenWeatherAdapter _api;

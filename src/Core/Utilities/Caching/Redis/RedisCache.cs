@@ -17,65 +17,69 @@ namespace Redis
             _redis = ConnectionMultiplexer.Connect(options);
         }
 
-        public bool Contains(string key)
+        public async Task<bool> Contains(string key)
         {
-            return Cache.KeyExists(key.ToUpperInvariant());
+            return await Cache.KeyExistsAsync(key.ToUpperInvariant());
         }
 
-        public void Flush()
+        public async Task Flush()
         {
             foreach (var endpoint in _redis.GetEndPoints())
             {
                 var server = _redis.GetServer(endpoint);
-                server.FlushDatabase(flags: CommandFlags.FireAndForget);
+                await server.FlushDatabaseAsync(flags: CommandFlags.FireAndForget);
             }
         }
 
-        public T? Get<T>(string key) where T : class
+        public async Task<T?> Get<T>(string key) where T : class
         {
-            string value = Cache.StringGet(key.ToUpperInvariant()).ToString();
-            return string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject<T>(value);
+            var value = await Cache.StringGetAsync(key.ToUpperInvariant());
+            return string.IsNullOrWhiteSpace(value.ToString()) ? null : JsonConvert.DeserializeObject<T>(value.ToString());
         }
 
-        public void Remove(string key)
+        public async Task Remove(string key)
         {
-            Cache.KeyDelete(key.ToUpperInvariant(), CommandFlags.FireAndForget);
+            await Cache.KeyDeleteAsync(key.ToUpperInvariant(), CommandFlags.FireAndForget);
         }
 
-        public void Set(string key, object value)
+        public async Task Set(string key, object value)
         {
-            Cache.StringSet(key.ToUpperInvariant(), JsonConvert.SerializeObject(value), flags: CommandFlags.FireAndForget);
+            await Cache.StringSetAsync(key.ToUpperInvariant(), JsonConvert.SerializeObject(value), flags: CommandFlags.FireAndForget);
         }
 
-        public void Set(string key, object value, TimeSpan timeout)
+        public async Task Set(string key, object value, TimeSpan timeout)
         {
-            Cache.StringSet(key.ToUpperInvariant(), JsonConvert.SerializeObject(value), timeout, flags: CommandFlags.FireAndForget);
+            await Cache.StringSetAsync(key.ToUpperInvariant(), JsonConvert.SerializeObject(value), timeout, flags: CommandFlags.FireAndForget);
         }
 
-        public List<KeyValuePair<string, string>> GetCacheContent()
+        public Task<List<KeyValuePair<string, string>>> GetCacheContent()
         {
             throw new NotImplementedException("It is not possible to get the complete content of Redis cache.");
         }
 
-        public List<string> GetCacheKeys()
+        public async Task<List<string>> GetCacheKeys()
         {
-            var server = _redis.GetServer(_redis.GetEndPoints().FirstOrDefault());
-            return server.Keys().Select(key => key.ToString()).OrderBy(r => r).ToList();
+            return await Task.Run(() =>
+            {
+                var server = _redis.GetServer(_redis.GetEndPoints().FirstOrDefault());
+                return server.Keys().Select(key => key.ToString()).OrderBy(r => r).ToList();
+            });
         }
 
-        public string GetAsString(string key)
+        public async Task<string> GetAsString(string key)
         {
-            return Cache.StringGet(key.ToUpperInvariant()).ToString();
+            var value = await Cache.StringGetAsync(key.ToUpperInvariant());
+            return value.ToString();
         }
 
-        public void Set(string key, string value)
+        public async Task Set(string key, string value)
         {
-            Cache.StringSet(key.ToUpperInvariant(), value, flags: CommandFlags.FireAndForget);
+            await Cache.StringSetAsync(key.ToUpperInvariant(), value, flags: CommandFlags.FireAndForget);
         }
 
-        public void Set(string key, string value, TimeSpan timeout)
+        public async Task Set(string key, string value, TimeSpan timeout)
         {
-            Cache.StringSet(key.ToUpperInvariant(), value, timeout, flags: CommandFlags.FireAndForget);
+            await Cache.StringSetAsync(key.ToUpperInvariant(), value, timeout, flags: CommandFlags.FireAndForget);
         }
     }
 

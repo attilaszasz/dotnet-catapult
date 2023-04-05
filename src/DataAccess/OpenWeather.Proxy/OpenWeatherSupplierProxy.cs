@@ -19,7 +19,7 @@ namespace OpenWeather.Proxy
         {
             try
             {
-                return await _client.InvokeMethodAsync<WeatherForecastCriteria, IEnumerable<WeatherForecast>>(HttpMethod.Post, "OpenWeather", "GetWeatherForecast", criteria);
+                return await _client.InvokeMethodAsync<WeatherForecastCriteria, IEnumerable<WeatherForecast>>(HttpMethod.Post, Constants.Suppliers.OpenWeather, "GetWeatherForecast", criteria);
             }
             catch (InvocationException ex)
             {

@@ -1,4 +1,4 @@
-# dotnet-catapult
+# DotNet Catapult
 An ASP.NET 7 backend solution demonstrating best practices
 
 [Documentation](docs/README.md) 
@@ -31,7 +31,10 @@ Added Autofac as DI container.
 Implemented strategy pattern for selecting weather supplier.
 
 ## v7
-Added multi-level caching to showcase decorator pattern using dependency injection
+Added multi-level caching to showcase decorator pattern using dependency injection.
 
 ## v8
-Instead of a modular monolith, the system is now decomposed into microservices, comunicating through Dapr
+Instead of a modular monolith, the system is now decomposed into microservices, comunicating through Dapr.
+
+## v8.1
+For shared cache, instead of Redis implementation, use Dapr statestore.

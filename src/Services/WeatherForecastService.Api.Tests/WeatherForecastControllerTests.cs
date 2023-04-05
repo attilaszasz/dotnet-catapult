@@ -31,7 +31,7 @@ namespace WeatherForecastService.Api.Tests
         {
             var controller = _container!.Resolve<WeatherForecastController>();
 
-            var result = (await controller.Post(Parameters.TarguMures, supplierName: "Dummy")).Result as OkObjectResult;
+            var result = (await controller.Post(Parameters.TarguMures, supplierName: Constants.Suppliers.Dummy)).Result as OkObjectResult;
 
             Assert.IsNotNull(result);
             var value = result.Value as IEnumerable<WeatherForecast>;

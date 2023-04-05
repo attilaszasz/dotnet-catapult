@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  ############################
+  # Redis state store
+  ############################
+  redis:
+    image: "redis:alpine"
+    container_name: "catapult-redis"
+    domainname: "catapult-redis"
+    ports:
+      - "6380:6379"
+    networks:
+      - catapult
+
+## docker network create catapult      
+networks:
+  catapult:
+    external: true
