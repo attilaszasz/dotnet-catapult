@@ -102,7 +102,18 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
       }
     }
     template: {
-      containers: []
+      containers: [
+        {
+          image: 'weatherforecastservice-api:latest'
+          name: 'WeatherForecast'
+          env: [
+            {
+              name: 'ASPNETCORE_ENVIRONMENT'
+              value: 'Development'
+            }
+          ]
+        }
+      ]
       scale: {
         minReplicas: 1
         maxReplicas: 1

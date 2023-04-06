@@ -43,7 +43,7 @@ try
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.
-    if (app.Environment.IsEnvironment("Local"))
+    if (app.Environment.IsEnvironment("Local") || app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
