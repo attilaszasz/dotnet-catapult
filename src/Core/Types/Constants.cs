@@ -16,5 +16,6 @@ namespace Types
 
 
         public const string StateStoreName = "statestore";
+        public const string SecretStoreName = "secretstore";
     }
 }

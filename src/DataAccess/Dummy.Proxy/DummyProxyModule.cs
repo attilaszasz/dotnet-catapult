@@ -13,6 +13,7 @@ namespace Dummy.Proxy
 
             builder.Register(c => new DaprClientBuilder().Build())
                 .As<DaprClient>()
+                .IfNotRegistered(typeof(DaprClient))
                 .SingleInstance();
 
             builder.RegisterType<DummyWeatherSupplierProxy>()

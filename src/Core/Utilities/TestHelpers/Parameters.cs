@@ -4,7 +4,7 @@ namespace TestHelpers
 {
     public static class Parameters
     {
-        public static WeatherForecastCriteria TarguMures = new WeatherForecastCriteria
+        public static WeatherForecastCriteria TarguMures = new()
         {
             Longitude = 46.542679,
             Latitude = 24.557859,

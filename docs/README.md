@@ -16,4 +16,17 @@ Example using powershell (*run as administrator*):
 [Environment]::SetEnvironmentVariable('CATAPULT_DAPR_FOLDER', "C:\Work\Projects\dotnet-catapult\infrastructure\local\dapr\components", "Machine")
 ```
 
-Restart Visual Studio if it was running.
+Restart Visual Studio if it was running.  
+
+Create a `secrets.json` file *outside* of the repository folder. Make sure [secretstore.yaml](../infrastructure/local/dapr/components/secretstore.yaml) is pointing to it.
+
+secrets.json example:
+```json
+{
+    "OpenWeatherAPIToken": "[your token]",
+    "Caching": {
+        "Local": "false",
+        "Shared": "true"
+    }
+}
+```

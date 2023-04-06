@@ -13,6 +13,7 @@ namespace DaprStateStore
 
             builder.Register(c => new DaprClientBuilder().Build())
                 .As<DaprClient>()
+                .IfNotRegistered(typeof(DaprClient))
                 .SingleInstance();
 
             builder.RegisterType<DaprStateStoreCache>()

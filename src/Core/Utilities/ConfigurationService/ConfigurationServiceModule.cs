@@ -1,6 +1,9 @@
 ﻿using Autofac;
+using Dapr.Client;
+using Dapr.Extensions.Configuration;
 using Interfaces;
 using Microsoft.Extensions.Configuration;
+using Types;
 
 namespace ConfigurationService
 {
@@ -10,8 +13,13 @@ namespace ConfigurationService
         {
             base.Load(builder);
 
-            //NOTE: see how to work with user secrets here: https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-6.0&tabs=windows
-            builder.Register(c => new ConfigurationBuilder().AddUserSecrets("7b91147d-502c-4fa9-b973-294be01c474b").Build())
+            builder.Register(c => new DaprClientBuilder().Build())
+                .As<DaprClient>()
+                .IfNotRegistered(typeof(DaprClient))
+                .SingleInstance();
+
+            //NOTE: using Dapr secret store
+            builder.Register(c => new ConfigurationBuilder().AddDaprSecretStore(Constants.SecretStoreName, c.Resolve<DaprClient>(), TimeSpan.FromSeconds(30)).Build())
                 .As<IConfigurationRoot>()
                 .SingleInstance();
 
