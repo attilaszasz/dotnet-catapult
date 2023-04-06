@@ -75,4 +75,40 @@ resource env 'Microsoft.App/managedEnvironments@2022-10-01' = {
   }
 }
 
+resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
+  name: '${abbrs.appContainerApps}${environmentName}'
+  location: location
+  tags: union(tags, { 'azd-service-name': '${abbrs.appContainerApps}${environmentName}' })
+  properties: {
+    managedEnvironmentId: env.id
+    configuration: {
+      activeRevisionsMode: 'single'
+      secrets: [
+        {
+          name: 'container-registry-password'
+          value: acr.listCredentials().passwords[0].value
+        }
+      ]
+      registries: [
+        {
+          server: '${acr.name}.azurecr.io'
+          username: acr.name
+          passwordSecretRef: 'container-registry-password'
+        }
+      ]
+      ingress: {
+        external: true
+        targetPort: 80
+      }
+    }
+    template: {
+      containers: []
+      scale: {
+        minReplicas: 1
+        maxReplicas: 1
+      }
+    }
+  }
+}
+
 output AZURE_CONTAINER_REGISTRY_ENDPOINT string = acr.properties.loginServer
