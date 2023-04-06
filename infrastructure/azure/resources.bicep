@@ -105,7 +105,7 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
       containers: [
         {
           image: 'weatherforecastservice-api:latest'
-          name: 'WeatherForecast'
+          name: 'weatherforecast'
           env: [
             {
               name: 'ASPNETCORE_ENVIRONMENT'

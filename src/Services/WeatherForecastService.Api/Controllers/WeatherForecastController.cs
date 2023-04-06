@@ -19,7 +19,7 @@ namespace WeatherForecastService.Api.Controllers
         [Route("/GetWeatherForecast")]
         public async Task<ActionResult<IEnumerable<WeatherForecast>>> Post(WeatherForecastCriteria criteria, string supplierName = Constants.Suppliers.Dummy)
         {
-            var result = await _service.GetWeatherForecast(criteria, supplierName);
+            var result = await _service.GetWeatherForecast(criteria, supplierName.ToLowerInvariant());
             return Ok(result);
         }
     }

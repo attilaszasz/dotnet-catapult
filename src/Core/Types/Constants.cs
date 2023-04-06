@@ -5,13 +5,13 @@ namespace Types
     {
         public static class Suppliers
         {
-            public const string Dummy = "Dummy";
-            public const string OpenWeather = "OpenWeather";
+            public const string Dummy = "dummy";
+            public const string OpenWeather = "openweather";
         }
 
         public static class Services
         {
-            public const string WeatherForecast = "WeatherForecast";
+            public const string WeatherForecast = "weatherforecast";
         }
 
 
