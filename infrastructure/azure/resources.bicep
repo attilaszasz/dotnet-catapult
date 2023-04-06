@@ -2,9 +2,10 @@ param location string
 param environmentName string
 param tags object
 var abbrs = loadJsonContent('abbreviations.json')
+var sanitizedEnvironmentName = replace(environmentName, '_', '')
 
 resource acr 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
-  name: '${abbrs.containerRegistryRegistries}${environmentName}'
+  name: '${abbrs.containerRegistryRegistries}${sanitizedEnvironmentName}'
   location: location
   tags: tags
   sku: {
