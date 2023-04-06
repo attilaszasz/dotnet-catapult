@@ -3,16 +3,16 @@ targetScope = 'subscription'
 @minLength(1)
 @maxLength(50)
 @description('Name of the environment')
-param name string
+param environmentName string
 
 @minLength(1)
 @description('Location for all resources')
 param location string
 
-var tags = { 'azd-env-name': name }
+var tags = { 'azd-env-name': environmentName }
 
 resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
-  name: name
+  name: environmentName
   location: location
   tags: tags
 }
@@ -21,7 +21,7 @@ module resources 'resources.bicep' = {
   name: 'resources'
   scope: rg
   params: {
-    name: name
+    environmentName: environmentName
     location: location
     tags: tags
   }

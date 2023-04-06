@@ -1,7 +1,7 @@
 # define the following variables:
 # connection
 # subscriptionId
-# resourceGroup
+# environmentName
 # location
 
 name: Deploy Bicep files
@@ -19,10 +19,10 @@ steps:
     azureResourceManagerConnection: '$(connection)'
     subscriptionId: '$(subscriptionId)'
     action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(resourceGroup)'
+    resourceGroupName: '$(environmentName)'
     location: '$(location)'
     templateLocation: 'Linked artifact'
     csmFile: './infrastructure/azure/main.bicep'
     csmParametersFile: './infrastructure/azure/main.parameters.json'
-    overrideParameters: '-name $(resourceGroup) -location $(location)'
+    overrideParameters: '-name $(environmentName) -location $(location)'
     deploymentMode: 'Incremental'

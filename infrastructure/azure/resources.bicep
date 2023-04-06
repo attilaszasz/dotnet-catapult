@@ -1,10 +1,10 @@
 param location string
-param name string
+param environmentName string
 param tags object
 var abbrs = loadJsonContent('abbreviations.json')
 
 resource acr 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
-  name: '${abbrs.containerRegistryRegistries}${name}'
+  name: '${abbrs.containerRegistryRegistries}${environmentName}'
   location: location
   tags: tags
   sku: {
