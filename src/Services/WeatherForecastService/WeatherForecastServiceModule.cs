@@ -1,6 +1,8 @@
 ﻿using Autofac;
+using Dummy;
 using Dummy.Proxy;
 using Interfaces;
+using OpenWeather;
 using OpenWeather.Proxy;
 
 namespace WeatherForecastService
@@ -11,8 +13,8 @@ namespace WeatherForecastService
         {
             base.Load(builder);
 
-            builder.RegisterModule<OpenWeatherProxyModule>();
-            builder.RegisterModule<DummyProxyModule>();
+            builder.RegisterModule<OpenWeatherModule>();
+            builder.RegisterModule<DummyModule>();
 
             //NOTE: no more messing around with parameters, just explicitely register
             builder.RegisterType<WeatherForecastService>()
