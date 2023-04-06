@@ -16,6 +16,24 @@ resource acr 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
   }
 }
 
+resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+  name: '${abbrs.storageStorageAccounts}${sanitizedEnvironmentName}'
+  location: location
+  tags: tags
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: false
+    networkAcls: {
+      bypass: 'AzureServices'
+      defaultAction: 'Allow'
+    }
+  }
+}
+
 resource logs 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
   name: '${abbrs.operationalInsightsWorkspaces}${environmentName}'
   location: location
@@ -29,6 +47,17 @@ resource logs 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
       name: 'PerGB2018'
     }
   })
+}
+
+resource ai 'Microsoft.Insights/components@2020-02-02' = {
+  name: '${abbrs.insightsComponents}${environmentName}'
+  location: location
+  tags: tags
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+    WorkspaceResourceId: logs.id
+  }
 }
 
 resource env 'Microsoft.App/managedEnvironments@2022-10-01' = {
