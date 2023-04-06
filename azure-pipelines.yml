@@ -1,7 +1,10 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# define the following variables:
+# connection
+# subscriptionId
+# resourceGroup
+# location
+
+name: Deploy Bicep files
 
 trigger:
 - v9
@@ -10,10 +13,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: '$(connection)'
+    subscriptionId: '$(subscriptionId)'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: '$(resourceGroup)'
+    location: '$(location)'
+    templateLocation: 'Linked artifact'
+    csmFile: './infrastructure/azure/main.bicep'
+    csmParametersFile: './infrastructure/azure/main.parameters.json'
+    overrideParameters: '-name $(resourceGroup) -location $(location)'
+    deploymentMode: 'Incremental'
