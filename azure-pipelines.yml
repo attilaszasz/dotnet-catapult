@@ -15,14 +15,12 @@ pool:
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
   inputs:
-    deploymentScope: 'Resource Group'
+    deploymentScope: 'Subscription'
     azureResourceManagerConnection: '$(connection)'
     subscriptionId: '$(subscriptionId)'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(environmentName)'
     location: '$(location)'
     templateLocation: 'Linked artifact'
     csmFile: './infrastructure/azure/main.bicep'
     csmParametersFile: './infrastructure/azure/main.parameters.json'
- #   overrideParameters: '-name $(resourceGroup) -location $(location)'
-    deploymentMode: 'Incremental'
+     #   overrideParameters: '-name $(resourceGroup) -location $(location)'
+    deploymentMode: 'Incremental'    
