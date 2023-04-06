@@ -40,4 +40,4 @@ Instead of a modular monolith, the system is now decomposed into microservices, 
 For shared cache, instead of Redis implementation, use Dapr statestore.
 
 ## v8.2
-Using Dapr secrets store intead of .Net usersecrets.
+Using Dapr secrets store instead of .Net usersecrets.
