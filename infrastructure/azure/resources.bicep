@@ -19,6 +19,24 @@ resource acr 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
   }
 }
 
+resource redis 'Microsoft.Cache/redis@2022-06-01' = {
+  name: '${abbrs.cacheRedis}${environmentName}'
+  location: location
+  tags: tags
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {
+    minimumTlsVersion: '1.2'
+    enableNonSslPort: false
+    sku: {
+      name: 'Basic'
+      family: 'C'
+      capacity: 0
+    }
+  }
+}
+
 resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: '${abbrs.storageStorageAccounts}${sanitizedEnvironmentName}'
   location: location
@@ -118,6 +136,7 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
         appPort: 80
         appId: 'weatherforecast'
         appProtocol: 'http'
+        enableApiLogging: true
       }
     }
     template: {
