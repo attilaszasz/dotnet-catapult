@@ -113,6 +113,12 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
         targetPort: 80
         allowInsecure: false
       }
+      dapr: {
+        enabled: true
+        appPort: 80
+        appId: 'weatherforecast'
+        appProtocol: 'http'
+      }
     }
     template: {
       containers: [
