@@ -37,6 +37,24 @@ resource redis 'Microsoft.Cache/redis@2022-06-01' = {
   }
 }
 
+resource keyvault 'Microsoft.KeyVault/vaults@2023-02-01' = {
+  name: '${abbrs.keyVaultVaults}${environmentName}'
+  location: location
+  tags: tags
+  properties: {
+    sku: {
+      family: 'A'
+      name: 'standard'
+    }
+    tenantId: subscription().tenantId
+    accessPolicies: []
+    enableRbacAuthorization: true
+    enabledForTemplateDeployment: true
+    enableSoftDelete: true
+    softDeleteRetentionInDays: 7
+  }
+}
+
 resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: '${abbrs.storageStorageAccounts}${sanitizedEnvironmentName}'
   location: location
