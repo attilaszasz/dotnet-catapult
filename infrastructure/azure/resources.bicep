@@ -3,7 +3,6 @@ param environmentName string
 param tags object
 var abbrs = loadJsonContent('abbreviations.json')
 var sanitizedEnvironmentName = replace(environmentName, '-', '')
-var acrPullRole = resourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d')
 
 resource acr 'Microsoft.ContainerRegistry/registries@2022-12-01' = {
   name: '${abbrs.containerRegistryRegistries}${sanitizedEnvironmentName}'
@@ -85,30 +84,11 @@ resource env 'Microsoft.App/managedEnvironments@2022-10-01' = {
   }
 }
 
-resource uaiWeatherforecast 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
-  name: '${abbrs.managedIdentityUserAssignedIdentities}weatherforecast'
-  location: location
-  tags: tags
-}
-
-@description('This allows the managed identity of the container app to access the registry, note scope is applied to the wider ResourceGroup not the ACR')
-resource uiRbacWeatherForecast 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(resourceGroup().id, uaiWeatherforecast.id, acrPullRole)
-  properties: {
-    roleDefinitionId: acrPullRole
-    principalId: uaiWeatherforecast.properties.principalId
-    principalType: 'ServicePrincipal'
-  }
-}
-
 resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
   name: '${abbrs.appContainerApps}weatherforecast'
   location: location
   identity: {
-    type: 'UserAssigned'
-    userAssignedIdentities: {
-      '${uaiWeatherforecast.id}': {}
-    }
+    type: 'SystemAssigned'
   }
   tags: union(tags, { 'azd-service-name': '${abbrs.appContainerApps}${environmentName}' })
   properties: {
@@ -124,7 +104,8 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
       registries: [
         {
           server: '${acr.name}.azurecr.io'
-          identity: uaiWeatherforecast.id
+          username: acr.name
+          passwordSecretRef: 'container-registry-password'
         }
       ]
       ingress: {
