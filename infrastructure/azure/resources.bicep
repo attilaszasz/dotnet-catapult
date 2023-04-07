@@ -107,20 +107,9 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
           name: 'weatherforecast'
           image: '${acr.name}.azurecr.io/weatherforecast:latest'
           resources: {
-            requests: {
-              cpu: '0.5'
-              memoryInGB: '1'
-            }
-            limits: {
-              cpu: '1'
-              memoryInGB: '2'
-            }
+            cpu: json('.25')
+            memory: '.5Gi'
           }
-          ports: [
-            {
-              containerPort: 80
-            }
-          ]
           env: [
             {
               name: 'ASPNETCORE_ENVIRONMENT'
@@ -128,6 +117,7 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
             }
           ]
         }
+      ]
       scale: {
         minReplicas: 1
         maxReplicas: 1
