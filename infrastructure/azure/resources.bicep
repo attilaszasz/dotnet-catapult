@@ -76,7 +76,7 @@ resource env 'Microsoft.App/managedEnvironments@2022-10-01' = {
 }
 
 resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
-  name: '${abbrs.appContainerApps}${environmentName}'
+  name: '${abbrs.appContainerApps}weatherforecast'
   location: location
   tags: union(tags, { 'azd-service-name': '${abbrs.appContainerApps}${environmentName}' })
   properties: {
@@ -104,8 +104,23 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
     template: {
       containers: [
         {
-          image: 'weatherforecastservice-api:latest'
           name: 'weatherforecast'
+          image: '${acr.name}.azurecr.io/weatherforecast:latest'
+          resources: {
+            requests: {
+              cpu: '0.5'
+              memoryInGB: '1'
+            }
+            limits: {
+              cpu: '1'
+              memoryInGB: '2'
+            }
+          }
+          ports: [
+            {
+              containerPort: 80
+            }
+          ]
           env: [
             {
               name: 'ASPNETCORE_ENVIRONMENT'
@@ -113,7 +128,6 @@ resource containerapp 'Microsoft.App/containerApps@2022-10-01' = {
             }
           ]
         }
-      ]
       scale: {
         minReplicas: 1
         maxReplicas: 1

@@ -3,6 +3,9 @@
   <PropertyGroup>
     <UserSecretsId>7b91147d-502c-4fa9-b973-294be01c474b</UserSecretsId>
     <EnableSdkContainerSupport>true</EnableSdkContainerSupport>
+    <ContainerImageName>weatherforecast</ContainerImageName>
+    <VersionPrefix Condition="'$(RELEASE_VERSION)' == ''">1.0.0</VersionPrefix>
+    <RuntimeIdentifier>linux-x64</RuntimeIdentifier>    
   </PropertyGroup>
 
   <ItemGroup>
