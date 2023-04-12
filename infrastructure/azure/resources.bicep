@@ -134,18 +134,6 @@ resource kvSecretstore 'Microsoft.App/managedEnvironments/daprComponents@2022-10
         name: 'vaultName'
         value: keyvault.name
       }
-      {
-        name: 'azureTenantId'
-        value: subscription().tenantId
-      }
-      {
-        name: 'azureClientId'
-        value: azureClientId
-      }
-      {
-        name: 'azureClientSecret'
-        value: azureClientSecret
-      }
     ]
     scopes: [
       'weatherforecast'
