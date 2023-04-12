@@ -1,6 +1,10 @@
 param location string
 param environmentName string
 param tags object
+param azureClientId string
+@secure()
+param azureClientSecret string
+
 var abbrs = loadJsonContent('abbreviations.json')
 var sanitizedEnvironmentName = replace(environmentName, '-', '')
 
@@ -117,6 +121,57 @@ resource env 'Microsoft.App/managedEnvironments@2022-10-01' = {
         sharedKey: logs.listKeys().primarySharedKey
       }
     }
+  }
+}
+
+resource kvSecretstore 'Microsoft.App/managedEnvironments/daprComponents@2022-10-01' = {
+  name: 'secretstore'
+  parent: env
+  properties: {
+    componentType: 'secretstores.azure.keyvault'
+    metadata: [
+      {
+        name: 'vaultName'
+        value: keyvault.name
+      }
+      {
+        name: 'azureTenantId'
+        value: subscription().tenantId
+      }
+      {
+        name: 'azureClientId'
+        value: azureClientId
+      }
+      {
+        name: 'azureClientSecret'
+        value: azureClientSecret
+      }
+    ]
+  }
+}
+
+resource redisStateStore 'Microsoft.App/managedEnvironments/daprComponents@2022-10-01' ={
+  name: 'statestore'
+  parent: env
+  properties: {
+    componentType: 'state.redis'
+    metadata: [
+      {
+        name: 'redisHost'
+        value: redis.properties.hostName
+      }
+      {
+        name: 'redisPassword'
+        value: redis.listKeys().primaryKey
+      }
+      {
+        name: 'enableTLS'
+        value: 'true'
+      }
+    ]
+    scopes: [
+      containerapp.name
+    ]
   }
 }
 

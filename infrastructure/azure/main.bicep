@@ -9,6 +9,10 @@ param environmentName string
 @description('Location for all resources')
 param location string
 
+param azureClientId string
+@secure()
+param azureClientSecret string
+
 var tags = { 'azd-env-name': environmentName }
 
 resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
@@ -24,6 +28,8 @@ module resources 'resources.bicep' = {
     environmentName: environmentName
     location: location
     tags: tags
+    azureClientId: azureClientId
+    azureClientSecret: azureClientSecret
   }
 }
 
