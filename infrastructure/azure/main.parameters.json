@@ -4,15 +4,6 @@
     "parameters": {
         "environmentName": {
             "value": "di-weather-demo"
-        },
-        "location": {
-            "value": "West Europe"
-        },
-        "azureClientId": {
-            "value": "XXX"
-        },
-        "azureClientSecret": {
-            "value": "XXX"
         }
     }
 }

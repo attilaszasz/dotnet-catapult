@@ -129,6 +129,7 @@ resource kvSecretstore 'Microsoft.App/managedEnvironments/daprComponents@2022-10
   parent: env
   properties: {
     componentType: 'secretstores.azure.keyvault'
+    version: 'v1'
     metadata: [
       {
         name: 'vaultName'
@@ -155,6 +156,7 @@ resource redisStateStore 'Microsoft.App/managedEnvironments/daprComponents@2022-
   parent: env
   properties: {
     componentType: 'state.redis'
+    version: 'v1'
     metadata: [
       {
         name: 'redisHost'
