@@ -52,7 +52,6 @@ resource keyvault 'Microsoft.KeyVault/vaults@2023-02-01' = {
     }
     tenantId: subscription().tenantId
     accessPolicies: []
-    enableRbacAuthorization: true
     enabledForTemplateDeployment: true
     enableSoftDelete: true
     softDeleteRetentionInDays: 7
@@ -148,6 +147,9 @@ resource kvSecretstore 'Microsoft.App/managedEnvironments/daprComponents@2022-10
         value: azureClientSecret
       }
     ]
+    scopes: [
+      'weatherforecast'
+    ]
   }
 }
 
@@ -172,7 +174,7 @@ resource redisStateStore 'Microsoft.App/managedEnvironments/daprComponents@2022-
       }
     ]
     scopes: [
-      containerapp.name
+      'weatherforecast'
     ]
   }
 }
