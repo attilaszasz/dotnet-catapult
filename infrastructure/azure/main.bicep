@@ -5,7 +5,9 @@ targetScope = 'subscription'
 @description('Name of the environment')
 param environmentName string
 
-param location string = resourceGroup().location
+@minLength(1)
+@description('Location for all resources')
+param location string
 
 param azureClientId string
 @secure()
