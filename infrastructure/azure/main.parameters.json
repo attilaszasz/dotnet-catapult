@@ -9,10 +9,10 @@
             "value": "West Europe"
         },
         "azureClientId": {
-            "value": ""
+            "value": "XXX"
         },
         "azureClientSecret": {
-            "value": ""
+            "value": "XXX"
         }
     }
 }
